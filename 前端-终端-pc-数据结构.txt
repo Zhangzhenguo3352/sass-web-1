@@ -1,0 +1,31 @@
+	var json = {
+		'00': 'A4纸','01': '一寸照片','02': '两寸照片','03': '七寸照片',   // 纸张类型
+
+		'10': '单面','11': '双面',                                     // 单/双面
+
+		'20': '黑色','21': '彩色'									      // 颜色
+	}
+
+
+	// 列表数据
+	var uniteSetData = [
+		{
+			suffixName: 'xml',
+			fileInfo: '开发合同.ots',
+			description: '开发合同.ots',  // 描述
+			page: 15,   //页数
+			printFileType: ['00','10','20',],  
+			money: 2.6,   // 钱
+			printQuantity: 3 // 打印 份数
+		},
+		{
+			suffixName: 'c',
+			fileInfo: '开发合同.ots',
+			description: '开发合同.ots',  // 描述
+			page: 15,   //页数
+			printFileType: ['00','10','21',],  
+			money: 2.6,   // 钱
+			printQuantity: 3 // 打印 份数
+		}
+		
+	];

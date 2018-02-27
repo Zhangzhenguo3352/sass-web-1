@@ -14,16 +14,18 @@ gulp.task('browser-sync', ['build', 'sass', 'cp'], function() {
 });
 
 gulp.task('cp',function () {
-  return gulp.src(['js/main.js','assets/*'], { base: '.' })
-         .pipe(gulp.dest('..'))
-         .pipe(browserSync.reload({stream:true}));; // 更新浏览器
+  return gulp.src(['js/*.js','images/*'], { base: '.' })
+    // .pipe(uglifyJs())    
+    // .pipe(rev())
+    .pipe(gulp.dest('../items'))
 
+    .pipe(browserSync.reload({stream:true}));; 
 });
 
 gulp.task('build', function(){
   gulp.src("pages/*.html")
       .pipe(wrap({src:"layout/default.html"}))
-      .pipe(gulp.dest(".."));
+      .pipe(gulp.dest("../items"));
 });
 
 function handleError(err) {
@@ -31,17 +33,16 @@ function handleError(err) {
   this.emit('end');
 }
 
-
 gulp.task('sass', function(){
-  gulp.src('styles/main.scss')
+  gulp.src(['styles/*.scss','styles/*.css'])
     .pipe(sass()).on('error', handleError) // 使用sass 编译，编译完成后如果报错 怎样
     .pipe(prefix())     // 自动处理浏览器前缀
-    .pipe(gulp.dest('../styles')) // 写到外面那一层 的 style里面
+    .pipe(gulp.dest('../items/styles')) // 写到外面那一层 的 style里面
     .pipe(browserSync.reload({stream:true}));; // 更新浏览器
 });
 
 gulp.task('rebuild', ['build'], function () {
-    browserSync.reload();// 更新浏览器
+    browserSync.reload('/items');// 更新浏览器
 });
 
 gulp.task('watch', function(){
